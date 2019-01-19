@@ -1,4 +1,4 @@
-Hero:
+Player:
 	Has level
 		Hard cap at 125
 		Increased through xp
@@ -12,7 +12,7 @@ Hero:
 	Can equip swords/wands/armor
 		All randomly generated
 			Must have attribute, level accurate stats, level requirement to use, must give hero a combat/passive ability
-	Has an backpack of 30 “slots”
+	Has an backpack of 10 “slots”
 		Each slot may contain one item
 			Some consumables will stack in up to 10. You can carry multiple stacks of the same item as long as you have the backpack space for it
 	has an inventory of 4 "slots"
@@ -30,6 +30,7 @@ Map:
 		Each floor must have an “exit” to the next floor with the goal of the game being to clear all floors
 			There must be a "boss" in each exit room ("boss room")
 			Upon beating the boss the player is automatically moved to the next floor and the boss will no longer be triggered upon entering the “boss room” a second(ect.) time
+				player will be moved to the village of the next floor
 	The player has the ability to travel through all floors by walking through the "world"
 	Can be displayed at any time while not in combat
 		Can display any floor you have been to
@@ -64,7 +65,10 @@ items:
 	armor
 		have name, modifier, power, energy type, ability
 	consumables
-		have name, modifier, power, energy type, ability
+		have name, ability
+			teleporting potion
+			health potion
+			mana potion
 
 combat:
 	turn by turn
@@ -80,3 +84,38 @@ combat:
 		must be determied at engagement
 			most likely just counter clockwise for their display order
 		all combatants will be numbered visably for the sake of knowing the order
+
+
+
+
+Map floor demo:
+
+
+        1   2   3   4   5  
+      +---+---+---+---+---+
+    a |   |   |   |   |   |
+      +---+---+---+---+---+
+    b |   |   |   |   |   |
+      +---+---+---+---+---+
+    c |   |   |   |   |   |
+      +---+---+---+---+---+
+    d |   |   |   |   |   |
+      +---+---+---+---+---+
+    e |   |   |   |   |   |
+      +---+---+---+---+---+
+
+
+
+things to do:
+
+create basic enemy and player
+develop enemy/player tests further
+store things in rooms
+save/load
+make ability class
+define emeny arcitypes
+create random enemy function
+define bosses
+player world navigation
+create UI
+combat
