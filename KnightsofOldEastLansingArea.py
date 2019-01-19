@@ -18,7 +18,7 @@ class Player(object):
         self.inventory = {1:"x",2:"x",3:"x",4:"x"}
         self.backpack = {}
         for n in range(1,10):
-            self.backpack[n:"x"]
+            self.backpack[n] = "x"
         
     def adjust_health(self,ammount):
         """change Player's health by ammount"""
@@ -96,6 +96,10 @@ class Player(object):
     def get_mana(self):
         """return Player's current health"""
         return self.mana
+    
+    def __str__(self):
+        """string literal for Player class"""
+        return self.name
         
 class Enemy(object):
     """"enemies have a name and health energy and power species and ability"""
@@ -122,6 +126,9 @@ class Enemy(object):
     def get_power(self):
         return self.power
     
+    def get_species(self):
+        return self.species
+    
     def defeated(self,ratio):
         """returns an ammount of rewarded xp determined by an outside function"""
         return int(self.health * ratio)
@@ -137,35 +144,33 @@ class Room(object):
     def __init__(self,value,objects=None):
         self.occupancy = objects
         self.value = value
-        enemy = Enemy("saskue",100,"arc",125,"ant")
-        enemy2 = Boss("orichmaru",500,"arc",1250,"snake")
-        chest1 = ["nothing"]
-        player = Player("Kirito")
-        town = ["elder","hospital","shope"]
         
-    def claim_monster(self,monster=enemy):
+    def claim_monster(self,monster=Enemy("saskue",100,"arc",125,"ant")):
         self.occupancy = monster
         self.value = "M"
         
-    def claim_chest(self,chest=chest1):
+    def claim_chest(self,chest=["nothing"]):
         self.occupancy = chest
         self.value = "C"
         
-    def claim_village(self,village=town):
+    def claim_village(self,village=["elder","hospital","shope"]):
         self.occupancy = village
         self.value = "V"
         
-    def claim_boss_room(self,boss=enemy2):
+    def claim_boss_room(self,boss=Boss("orichmaru",500,"arc",1250,"snake")):
         self.occupancy = boss
         self.value = "B"
+        
+    def get_value(self):
+        """returns value of room"""
+        return self.value
         
     def __str__(self):
         return self.value
 
 class Floor(object):
     def __init__(self):
-        room = Room("?")
-        self._cell = [[room for c in range(5)] \
+        self._cell = [[Room("?") for c in range(5)] \
                                 for r in range(5)]
         self.revealed_dict = {}
         for c in range(5):
@@ -231,7 +236,7 @@ class Floor(object):
             str_ += chr(97 + r) + ' |'
             for c in range(0,5):
                 if self.cell_revealed(c,r) and self.cell_not_none_check(c,r):
-                    value = self.get_cell(c,r)
+                    value = str(self._cell[c][r])
                 else:
                     value = "?"
                 str_ += " " + value + ' |'
@@ -255,9 +260,21 @@ def create_random_floor(floor_number):
             option = options[random.randint(0,9)]
             if option == "M":
                 floor.place_monster(selected[0],selected[1])
-            if option == "C":
+            elif option == "C":
                 floor.place_chest(selected[0],selected[1])
             else:
                 floor.place_empty(selected[0],selected[1])
     return floor
-    
+
+def create_player(name):
+    return Player(name)
+
+def create_goblin(health=100,energy="Solar",power=20,ability=None):
+    return Enemy("Goblin",health,energy,power,"Goblin",ability)
+
+def create_dark_elf(health=85,energy="Void",power=30,ability=None):
+    return Enemy("Dark Elf",health,energy,power,"Elf",ability)
+
+def create_spider(health=120,energy="Arc",power=17,ability=None):
+    return Enemy("Spider",health,energy,power,"Spider",ability)
+

@@ -104,18 +104,38 @@ Map floor demo:
     e |   |   |   |   |   |
       +---+---+---+---+---+
 
+Energy Type counter wheel:
+Solar beats Void
+Void beats Arc
+Arc beats Solar
 
+Abilities map:
+scortch shot: attack two times against enemies with a Solar weakness
+charged swing: attack two times against enemies with an Arc weakness
+dark touch: attack two times against enemies with a Void weakness
 
+double tap: attack a second time for 60% less damage than the original
+triple tap: attack a second time for 60% less damage than the original and a third time for 85% less damage than the original
+
+life steal: attacks grant 15% of the damage back to you in your health bar
+gambling addict: attacks have a 1/10 chance to backfire dealing damage to you instead of the enemy. in return all attacks have 10% aditional damage
+healer's touch: heal for 35 hp each turn
+
+blood lust: deal 75 damage	
+	
 things to do:
 
-create basic enemy and player
-develop enemy/player tests further
+***finish random floor creation
+***create basic enemy and player
+***make spread sheet of floor number to player stats to enemy stats
+***map out counter wheel
+***map out abilities
 store things in rooms
 save/load
 make ability class
-define emeny arcitypes
+***define emeny arcitypes
 create random enemy function
-define bosses
+define bosses  1-10
 player world navigation
-create UI
 combat
+create UI
